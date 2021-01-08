@@ -1,0 +1,14 @@
+{
+    "name": "Espero",
+    "version": "1.0",
+    "description": "An extension that helps you learn a new language by changing a few words on the page to a foreign language",
+    "manifest_version": 2,
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+    }],
+    "browser_action": {
+        "default_popup": "index.html",
+        "default_title": "Espero"
+    }
+}
