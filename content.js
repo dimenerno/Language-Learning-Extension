@@ -28,14 +28,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     function replaceWithHighlight(textToFind, textToReplace) {
         var innerHTML = document.body.innerHTML;
         var indexes = getIndicesOf(textToFind, innerHTML);
-        var offset = textToReplace.length - textToFind.length + "<span style='background-color: yellow;'>".length + "</span>".length;
+        var offset = textToReplace.length - textToFind.length + "<span class = highlight>".length + "</span>".length;
 
         sendResponse({ count: indexes.length });
 
         for (var i = 0; i < indexes.length; i++) {
             var index = indexes[i];
             if (index >= 0) {
-                innerHTML = innerHTML.substring(0, index + i * offset) + "<span style='background-color: yellow;'>" + textToReplace + "</span>" + innerHTML.substring(index + textToFind.length + i * offset);
+                innerHTML = innerHTML.substring(0, index + i * offset) + "<span class = highlight>" + textToReplace + "</span>" + innerHTML.substring(index + textToFind.length + i * offset);
                 document.body.innerHTML = innerHTML;
             }
         }
@@ -44,8 +44,8 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     function replaceNoHighlight(textToFind, textToReplace) {
         var innerHTML = document.body.innerHTML;
         var indexes = getIndicesOf(textToFind, innerHTML);
-        var offset = textToReplace.length - textToFind.length - "<span style='background-color: yellow;'>".length - "</span>".length;
-        var prefix = "<span style='background-color: yellow;'>";
+        var offset = textToReplace.length - textToFind.length - "<span class = highlight>".length - "</span>".length;
+        var prefix = "<span class = highlight>";
         var suffix = "</span>";
 
         sendResponse({ count: indexes.length });
