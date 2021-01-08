@@ -1,4 +1,4 @@
-@keyframes addHighlight {
+@keyframes fadeIn {
     0% {
         opacity: 0;
     }
@@ -7,7 +7,7 @@
     }
 }
 
-@keyframes removeHighlight {
+@keyframes fadeOut {
     100% {
         opacity: 1;
     }
@@ -17,6 +17,23 @@
 }
 
 .highlight {
-    animation: 0.5s ease-in 0s 1 addHighlight;
-    background-color: rgb(167, 228, 245);
+    animation: 0.5s ease-in 0s 1 fadeIn;
+    background-color: rgb(245, 248, 202);
+    cursor: pointer;
+}
+
+.explanation {
+    animation: 0.3s ease-in 0s 1 fadeIn;
+    position: absolute;
+    width: 140px;
+    height: 100px;
+    line-height: 40px;
+    left: 315px;
+    top: 114px;
+    padding-left: 30px;
+    padding-top: 15px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+    font-family: Raleway;
 }

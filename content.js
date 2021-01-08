@@ -37,6 +37,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             if (index >= 0) {
                 innerHTML = innerHTML.substring(0, index + i * offset) + "<span class = highlight>" + textToReplace + "</span>" + innerHTML.substring(index + textToFind.length + i * offset);
                 document.body.innerHTML = innerHTML;
+                $(".highlight").on("click", function() {
+                    var $box = $('<div>');
+                    $box.html("<h3>Apple</h3><p>사과</p>")
+                        .css("left", $(this).offset().left)
+                        .css("top", $(this).offset().top + 30)
+                        .addClass("explanation")
+                        .appendTo("body")
+                })
             }
         }
     }
