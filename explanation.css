@@ -1,0 +1,84 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 1;
+    }
+    0% {
+        opacity: 0;
+    }
+}
+
+.highlight {
+    animation: 0.5s ease-in 0s 1 fadeIn;
+    background-color: rgb(245, 248, 202);
+    cursor: pointer;
+}
+
+.explanation {
+    background: linear-gradient(180deg, #091A50 0%, #020E36 100%);
+    animation: 0.3s ease-in 0s 1 fadeIn;
+    position: absolute;
+    line-height: 40px;
+    padding: 22px 26px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 3px;
+}
+
+.explanation h3 {
+    all: initial;
+    color: white;
+    font-family: Raleway;
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 14px;
+    margin-right: 30px;
+}
+
+.explanation p {
+    all: initial;
+    color: white;
+    font-family: Raleway;
+    font-size: 18px;
+    display: block;
+}
+
+.star {
+    position: relative;
+    transform: translateY(10%);
+    opacity: 0.5;
+    filter: grayscale(100%);
+    width: 16px;
+    height: 16px;
+    left: 10px;
+    bottom: 2px;
+    transition: 0.2s;
+}
+
+.star:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
+
+.cross {
+    position: relative;
+    left: 50px;
+    bottom: 8px;
+    margin-right: 12px;
+    opacity: 0.5;
+    width: 20px;
+    height: 20px;
+    transition: 0.2s;
+}
+
+.cross:hover {
+    opacity: 1;
+}
