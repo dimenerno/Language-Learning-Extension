@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Favorites</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <!-- Rounded switch -->
+    <h1>Favorites</h1>
+    <ul>
+
+    </ul>
+    <script src="translate.js"></script>
+    <script src="jquery.js"></script>
+    <script>
+        var $list = $('ul')
+        $.each(favorites, function(i) {
+            var li = $('<li>')
+                .addClass('word-item')
+                .text(favorites[i])
+                .appendTo($list);
+        });
+        console.log(favorites);
+    </script>
+</body>
+
+</html>

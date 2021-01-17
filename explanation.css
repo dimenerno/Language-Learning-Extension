@@ -63,11 +63,6 @@
     transition: 0.2s;
 }
 
-.star:hover {
-    opacity: 1;
-    filter: grayscale(0%);
-}
-
 .cross {
     position: relative;
     left: 50px;

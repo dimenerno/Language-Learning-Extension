@@ -1,3 +1,29 @@
+var wordlist = [{
+        "eng": "supply",
+        "kor": "공급"
+    },
+    {
+        "eng": "point out",
+        "kor": "지적"
+    },
+    {
+        "eng": "inoculation",
+        "kor": "접종"
+    },
+    {
+        "eng": "estimate",
+        "kor": "추산"
+    }
+];
+
+var favorites = [];
+
+/**
+ * Helper function. Searches for searchStr in str and returns the indices of occurence.
+ * @param {*} searchStr 
+ * @param {*} str 
+ */
+
 function getIndicesOf(searchStr, str) {
     var searchStrLen = searchStr.length;
     if (searchStrLen == 0) {
@@ -17,9 +43,10 @@ function getIndicesOf(searchStr, str) {
     return indices;
 }
 
-var flag = 0;
-var boxPresent = 0;
-
+/**
+ * Removes the helper box when the user clicks outside the box
+ * @param {*} e 
+ */
 function removeBox(e) {
     console.log(boxPresent);
     if (!document.getElementById('box').contains(e.target)) {
@@ -33,87 +60,125 @@ function removeBox(e) {
     }
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    if (flag % 2 == 0) {
-        replaceWithHighlight("공급", "supply");
-        replaceWithHighlight("지적", "point out");
-        replaceWithHighlight("접종", "inoculation");
-        replaceWithHighlight("추산", "estimate");
-        addWindow("공급", "supply");
-        addWindow("지적", "point out");
-        addWindow("접종", "inoculation");
-        addWindow("추산", "estimate");
-    } else {
-        replaceNoHighlight("공급", "supply");
-        replaceNoHighlight("지적", "point out");
-        replaceNoHighlight("접종", "inoculation");
-        replaceNoHighlight("추산", "estimate");
-    }
-    flag++;
+function arrayRemove(arr, value) {
 
-    function replaceWithHighlight(textToFind, textToReplace) {
-        var innerHTML = document.body.innerHTML;
-        var indexes = getIndicesOf(textToFind, innerHTML);
-        var offset = textToReplace.length - textToFind.length + ("<span class=\"highlight " + textToReplace + "\">").length + "</span>".length;
+    return arr.filter(function(ele) {
+        return ele != value;
+    });
+}
 
-        sendResponse({ count: indexes.length });
+/**
+ * When the translation is on, the value is 1. If not, 0.
+ */
+var flag = 0;
+/**
+ * When the helper box is present, the value is 1. If not, 0.
+ */
+var boxPresent = 0;
 
-        for (var i = 0; i < indexes.length; i++) {
-            var index = indexes[i];
-            if (index >= 0) {
-                innerHTML = innerHTML.substring(0, index + i * offset) + ("<span class=\"highlight " + textToReplace + "\">") + textToReplace + "</span>" + innerHTML.substring(index + textToFind.length + i * offset);
-                document.body.innerHTML = innerHTML;
-            }
+
+function changeToEng(korWord, engWord) {
+    var innerHTML = document.body.innerHTML;
+    var indexes = getIndicesOf(korWord, innerHTML);
+    var offset = engWord.length - korWord.length + ("<span class=\"highlight " + engWord + "\">").length + "</span>".length;
+
+    for (var i = 0; i < indexes.length; i++) {
+        var index = indexes[i];
+        if (index >= 0) {
+            innerHTML = innerHTML.substring(0, index + i * offset) + ("<span class=\"highlight " + engWord + "\">") + engWord + "</span>" + innerHTML.substring(index + korWord.length + i * offset);
+            document.body.innerHTML = innerHTML;
         }
     }
+}
 
-    function addWindow(textToFind, textToReplace) {
-        var $star = $('<img>');
-        $star
-            .attr("src", chrome.extension.getURL("/media/star.png"))
-            .addClass("star")
-            .on("click", function() {
+function addWindow(korWord, engWord) {
+    /* Start of jQuery element creation */
+    var $star = $('<img>');
+    $star
+        .attr("src", chrome.extension.getURL("/media/star.png"))
+        .addClass("star")
+        .on("click", function() {
+
+            if (favorites.some(favorites => favorites['kor'] === korWord)) {
+                // If the word is already added(the star is lit)
+                // and the user clicked the star,
+                // dim the star and remove the word from favorites  
+
+                $(this).css("opacity", 0.5).css("filter", "grayscale(100%)");
+                favorites = favorites.filter(function(el) { return el.kor != korWord; });
+            } else {
+                // If the word hadn't been added(the star is dim)
+                // and the user clicked the star,
+                // lit the star and add the word to favorites
+
                 $(this).css("opacity", 1).css("filter", "grayscale(0%)");
-            });
-
-        var $cross = $('<img>');
-        $cross
-            .attr("src", chrome.extension.getURL("/media/cross.png"))
-            .addClass("cross")
-            .on("click", function() {
-                var win = window.open("https://en.dict.naver.com/#/search?query=" + textToReplace, '_blank');
-                win.focus();
-            });
-
-        $("." + textToReplace).on("click", function() {
-            var $box = $('<div>').attr("id", "box");
-
-            $box.html("<h3>" + textToReplace + "</h3><p>" + textToFind + "</p>")
-                .css("left", $(this).offset().left)
-                .css("top", $(this).offset().top + $(this).height())
-                .addClass("explanation")
-                .appendTo("body");
-
-            $box.find("h3").append($star).append($cross);
-            document.addEventListener("click", removeBox);
-        });
-    }
-
-    function replaceNoHighlight(textToReplace, textToFind) {
-        var innerHTML = document.body.innerHTML;
-        var indexes = getIndicesOf(textToFind, innerHTML);
-        var offset = textToReplace.length - textToFind.length - ("<span class=\"highlight " + textToFind + "\">").length - "</span>".length;
-        var prefix = "<span class=\"highlight " + textToFind + "\">";
-        var suffix = "</span>";
-
-        sendResponse({ count: indexes.length });
-
-        for (var i = 0; i < indexes.length; i++) {
-            var index = indexes[i];
-            if (index >= 0) {
-                innerHTML = innerHTML.substring(0, index + i * offset - prefix.length) + textToReplace + innerHTML.substring(index + textToFind.length + i * offset + suffix.length);
-                document.body.innerHTML = innerHTML;
+                favorites.push({ "kor": korWord, "eng": korWord });
             }
+
+            console.log(favorites);
+        });
+
+    var $cross = $('<img>');
+    $cross
+        .attr("src", chrome.extension.getURL("/media/cross.png"))
+        .addClass("cross")
+        .on("click", function() {
+            var win = window.open("https://en.dict.naver.com/#/search?query=" + engWord, '_blank');
+            win.focus();
+        });
+    /* End of jQuery element creation */
+
+    $("." + engWord).on("click", function() {
+        /* Start of box creation */
+        var $box = $('<div>').attr("id", "box");
+
+        $box.html("<h3>" + engWord + "</h3><p>" + korWord + "</p>")
+            .css("left", $(this).offset().left)
+            .css("top", $(this).offset().top + $(this).height())
+            .addClass("explanation")
+            .appendTo("body");
+
+        $box.find("h3").append($star).append($cross);
+        /* End of box creation */
+
+        // Listen for removeBox event
+        document.addEventListener("click", removeBox);
+    });
+}
+
+
+function changeToKor(korWord, engWord) {
+    var innerHTML = document.body.innerHTML;
+    var indexes = getIndicesOf(engWord, innerHTML);
+    var offset = korWord.length - engWord.length - ("<span class=\"highlight " + engWord + "\">").length - "</span>".length;
+    var prefix = "<span class=\"highlight " + engWord + "\">";
+    var suffix = "</span>";
+
+    sendResponse({ count: indexes.length });
+
+    for (var i = 0; i < indexes.length; i++) {
+        var index = indexes[i];
+        if (index >= 0) {
+            innerHTML = innerHTML.substring(0, index + i * offset - prefix.length) + korWord + innerHTML.substring(index + engWord.length + i * offset + suffix.length);
+            document.body.innerHTML = innerHTML;
         }
     }
+}
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+
+    if (flag % 2 == 0) {
+        for (var i = 0; i < wordlist.length; i++) {
+            changeToEng(wordlist[i].kor, wordlist[i].eng);
+        }
+        for (var i = 0; i < wordlist.length; i++) {
+            addWindow(wordlist[i].kor, wordlist[i].eng);
+        }
+    } else {
+        for (var i = 0; i < wordlist.length; i++) {
+            changeToKor(wordlist[i].kor, wordlist[i].eng);
+        }
+    }
+
+    flag++;
 })
