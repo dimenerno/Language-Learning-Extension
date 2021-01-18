@@ -1,6 +1,466 @@
 var wordlist = [{
+        "eng": "apple",
+        "kor": "사과"
+    },
+    {
         "eng": "supply",
-        "kor": "공급"
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
+    },
+    {
+        "eng": "supply",
+        "kor": "뷁"
     },
     {
         "eng": "point out",
@@ -76,19 +536,19 @@ var flag = 0;
  */
 var boxPresent = 0;
 
+function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+
+function replaceAll(str, term, replacement) {
+    return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
+}
 
 function changeToEng(korWord, engWord) {
     var innerHTML = document.body.innerHTML;
-    var indexes = getIndicesOf(korWord, innerHTML);
-    var offset = engWord.length - korWord.length + ("<span class=\"highlight " + engWord + "\">").length + "</span>".length;
-
-    for (var i = 0; i < indexes.length; i++) {
-        var index = indexes[i];
-        if (index >= 0) {
-            innerHTML = innerHTML.substring(0, index + i * offset) + ("<span class=\"highlight " + engWord + "\">") + engWord + "</span>" + innerHTML.substring(index + korWord.length + i * offset);
-            document.body.innerHTML = innerHTML;
-        }
-    }
+    var engWordFormatted = ("<span class=\"highlight " + engWord + "\">") + engWord + "</span>"
+    document.body.innerHTML = replaceAll(innerHTML, korWord, engWordFormatted);
 }
 
 function addWindow(korWord, engWord) {
@@ -112,7 +572,7 @@ function addWindow(korWord, engWord) {
                 // lit the star and add the word to favorites
 
                 $(this).css("opacity", 1).css("filter", "grayscale(0%)");
-                favorites.push({ "kor": korWord, "eng": korWord });
+                favorites.push({ "kor": korWord, "eng": engWord });
             }
 
             console.log(favorites);

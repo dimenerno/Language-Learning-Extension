@@ -16,5 +16,5 @@
         "media/*.png",
         "txt/*.txt"
     ],
-    "content_security_policy": "script-src 'self' 'sha256-MZOUb6AUX19aUUOLiJaucdzj1LM1bh1rYCqX/rW56vQ='; object-src 'self'"
+    "content_security_policy": "script-src 'self' 'sha256-ph8xWndEoOBgmUO+qHvN4L2oOiIxh+4ISCnC/Z0J+zA='; object-src 'self'"
 }
