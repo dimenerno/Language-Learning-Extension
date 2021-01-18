@@ -479,31 +479,6 @@ var wordlist = [{
 var favorites = [];
 
 /**
- * Helper function. Searches for searchStr in str and returns the indices of occurence.
- * @param {*} searchStr 
- * @param {*} str 
- */
-
-function getIndicesOf(searchStr, str) {
-    var searchStrLen = searchStr.length;
-    if (searchStrLen == 0) {
-        return [];
-    }
-
-    var startIndex = 0,
-        index, indices = [];
-
-    str = str.toLowerCase();
-    searchStr = searchStr.toLowerCase();
-
-    while ((index = str.indexOf(searchStr, startIndex)) > -1) {
-        indices.push(index);
-        startIndex = index + searchStrLen;
-    }
-    return indices;
-}
-
-/**
  * Removes the helper box when the user clicks outside the box
  * @param {*} e 
  */
@@ -547,7 +522,7 @@ function replaceAll(str, term, replacement) {
 
 function changeToEng(korWord, engWord) {
     var innerHTML = document.body.innerHTML;
-    var engWordFormatted = ("<span class=\"highlight " + engWord + "\">") + engWord + "</span>"
+    var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
     document.body.innerHTML = replaceAll(innerHTML, korWord, engWordFormatted);
 }
 
@@ -563,14 +538,12 @@ function addWindow(korWord, engWord) {
                 // If the word is already added(the star is lit)
                 // and the user clicked the star,
                 // dim the star and remove the word from favorites  
-
                 $(this).css("opacity", 0.5).css("filter", "grayscale(100%)");
                 favorites = favorites.filter(function(el) { return el.kor != korWord; });
             } else {
                 // If the word hadn't been added(the star is dim)
                 // and the user clicked the star,
                 // lit the star and add the word to favorites
-
                 $(this).css("opacity", 1).css("filter", "grayscale(0%)");
                 favorites.push({ "kor": korWord, "eng": engWord });
             }
@@ -588,7 +561,7 @@ function addWindow(korWord, engWord) {
         });
     /* End of jQuery element creation */
 
-    $("." + engWord).on("click", function() {
+    $("." + engWord.replace(/\s/g, "")).on("click", function() {
         /* Start of box creation */
         var $box = $('<div>').attr("id", "box");
 
@@ -609,20 +582,8 @@ function addWindow(korWord, engWord) {
 
 function changeToKor(korWord, engWord) {
     var innerHTML = document.body.innerHTML;
-    var indexes = getIndicesOf(engWord, innerHTML);
-    var offset = korWord.length - engWord.length - ("<span class=\"highlight " + engWord + "\">").length - "</span>".length;
-    var prefix = "<span class=\"highlight " + engWord + "\">";
-    var suffix = "</span>";
-
-    sendResponse({ count: indexes.length });
-
-    for (var i = 0; i < indexes.length; i++) {
-        var index = indexes[i];
-        if (index >= 0) {
-            innerHTML = innerHTML.substring(0, index + i * offset - prefix.length) + korWord + innerHTML.substring(index + engWord.length + i * offset + suffix.length);
-            document.body.innerHTML = innerHTML;
-        }
-    }
+    var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
+    document.body.innerHTML = replaceAll(innerHTML, engWordFormatted, korWord);
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
