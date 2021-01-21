@@ -150,6 +150,12 @@ li a {
     font-size: 80%;
 }
 
+p.combobox {
+    position:relative;
+    top: 20%;
+    text-align:center;
+}
+
 .dropbtn {
     background-color: #040C23;
     color: white;
