@@ -484,11 +484,13 @@ var favorites = [];
  */
 function removeBox(e) {
     console.log(boxPresent);
-    if (!document.getElementById('box').contains(e.target)) {
+    if (e == null || !document.getElementById('box').contains(e.target)) {
+        var $box = $('#box');
         if (boxPresent == 0) {
-            boxPresent = 1
+            boxPresent = 1;
         } else {
-            document.getElementById('box').remove();
+            $box.animate({ opacity: 0 }, 500);
+            setTimeout(() => { document.getElementById('box').remove(); }, 500);
             document.removeEventListener("click", removeBox);
             boxPresent = 0;
         }
@@ -533,7 +535,6 @@ function addWindow(korWord, engWord) {
         .attr("src", chrome.extension.getURL("/media/star.png"))
         .addClass("star")
         .on("click", function() {
-
             if (favorites.some(favorites => favorites['kor'] === korWord)) {
                 // If the word is already added(the star is lit)
                 // and the user clicked the star,
@@ -563,6 +564,10 @@ function addWindow(korWord, engWord) {
 
     $("." + engWord.replace(/\s/g, "")).on("click", function() {
         /* Start of box creation */
+        if (boxPresent == 1) {
+            removeBox();
+            boxPresent = 0;
+        }
         var $box = $('<div>').attr("id", "box");
 
         $box.html("<h3>" + engWord + "</h3><p>" + korWord + "</p>")
