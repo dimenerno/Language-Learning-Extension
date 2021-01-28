@@ -8,6 +8,10 @@
         "js": ["translate.js", "jquery.js"],
         "css": ["explanation.css"]
     }],
+    "background": {
+        "scripts": ["translate.js", "jquery.js"],
+        "persistent": true
+    },
     "browser_action": {
         "default_popup": "main.html",
         "default_title": "Espero"
@@ -15,6 +19,9 @@
     "web_accessible_resources": [
         "media/*.png",
         "txt/*.txt"
+    ],
+    "permissions": [
+        "storage"
     ],
     "content_security_policy": "script-src 'self' 'sha256-ph8xWndEoOBgmUO+qHvN4L2oOiIxh+4ISCnC/Z0J+zA='; object-src 'self'"
 }

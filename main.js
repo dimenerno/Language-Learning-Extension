@@ -1,25 +1,33 @@
 var click = true;
-document.addEventListener('DOMContentLoaded', function(e) {
-    document.getElementById('translate').addEventListener('click', onToggle, false);
 
-    function onToggle() {
-        if (click) {
-            click = !click;
+$(document).ready(function() {
+    chrome.storage.local.get('isTranslating', (response) => {
+        console.log(response.isTranslating);
+        if (response.isTranslating) $('.checkbox').prop("checked", true);
+        else $('.checkbox').prop("checked", false);
+    })
+});
 
-            setTimeout(function() {
-                click = true;
-            }, 200)
+document.getElementById('translate').addEventListener('click', onToggle, false);
 
-            chrome.tabs.query({ currentWindow: true, active: true },
-                function(tabs) {
-                    chrome.tabs.sendMessage(tabs[0].id, 'hi', setCount);
-                })
-        }
+function onToggle() {
+    if (click) {
+        click = !click;
+
+        chrome.storage.local.get('isTranslating', (response) => {
+            console.log(response.isTranslating);
+            var isTranslating = !response.isTranslating;
+            chrome.storage.local.set({ isTranslating })
+        })
+
+        setTimeout(function() {
+            click = true;
+        }, 200)
+
+        chrome.tabs.query({ currentWindow: true, active: true },
+            function(tabs) {
+                chrome.tabs.sendMessage(tabs[0].id, null, null);
+                // chrome.tabs.sendMessage(tabs[0].id, 'hi', setCount);
+            })
     }
-
-    function setCount(res) {
-        const div = document.createElement('div');
-        div.textContent = `${res.count} words translated`;
-        document.body.appendChild(div);
-    }
-}, false);
+}
