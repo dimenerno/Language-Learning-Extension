@@ -44,10 +44,7 @@ function arrayRemove(arr, value) {
     });
 }
 
-/**
- * When the translation is on, the value is 1. If not, 0.
- */
-var flag = 0;
+
 /**
  * When the helper box is present, the value is 1. If not, 0.
  */
@@ -131,20 +128,23 @@ function changeToKor(korWord, engWord) {
     document.body.innerHTML = replaceAll(innerHTML, engWordFormatted, korWord);
 }
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+function main() {
+    chrome.storage.local.get('isTranslating', (response) => {
+        if (response.isTranslating) {
+            for (var i = 0; i < wordlist.length; i++) {
+                changeToEng(wordlist[i].kor, wordlist[i].eng);
+            }
+            for (var i = 0; i < wordlist.length; i++) {
+                addWindow(wordlist[i].kor, wordlist[i].eng);
+            }
+        } else {
+            for (var i = 0; i < wordlist.length; i++) {
+                changeToKor(wordlist[i].kor, wordlist[i].eng);
+            }
+        }
+    })
+}
 
-    if (flag % 2 == 0) {
-        for (var i = 0; i < wordlist.length; i++) {
-            changeToEng(wordlist[i].kor, wordlist[i].eng);
-        }
-        for (var i = 0; i < wordlist.length; i++) {
-            addWindow(wordlist[i].kor, wordlist[i].eng);
-        }
-    } else {
-        for (var i = 0; i < wordlist.length; i++) {
-            changeToKor(wordlist[i].kor, wordlist[i].eng);
-        }
-    }
+main()
 
-    flag++;
-})
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) { main() })
