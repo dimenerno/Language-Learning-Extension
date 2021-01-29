@@ -1,19 +1,153 @@
 var wordlist = [{
-        "eng": "apple",
-        "kor": "사과"
+        "eng": "a veces",
+        "kor": ["가끔", "가끔씩"],
+        "part": "adv"
     },
     {
-        "eng": "point out",
-        "kor": "지적"
+        "eng": "afuera",
+        "kor": ["밖"],
+        "part": "adv"
     },
     {
-        "eng": "inoculation",
-        "kor": "접종"
+        "eng": "ahora",
+        "kor": ["지금"],
+        "part": "adv"
     },
     {
-        "eng": "estimate",
-        "kor": "추산"
-    }
+        "eng": "amigo",
+        "kor": ["친구"],
+        "part": "n"
+    },
+    {
+        "eng": "amar",
+        "kor": ["사랑하다"],
+        "part": "v"
+    },
+    {
+        "eng": "antes de",
+        "kor": ["전에", "이전"],
+        "part": "adv"
+    },
+    {
+        "eng": "aquí",
+        "kor": ["여기"],
+        "part": "adv"
+    },
+    {
+        "eng": "arriba",
+        "kor": ["위에", "위쪽에"],
+        "part": "adv"
+    },
+    {
+        "eng": "así",
+        "kor": ["이렇게", "저렇게"],
+        "part": "adv"
+    },
+    {
+        "eng": "aún",
+        "kor": ["아직", "아직도"],
+        "part": "adv"
+    },
+    {
+        "eng": "casi",
+        "kor": ["거의"],
+        "part": "adv"
+    },
+    {
+        "eng": "cómo",
+        "kor": ["처럼"],
+        "part": "prep"
+    },
+    {
+        "eng": "cual",
+        "kor": ["어느"],
+        "part": "adj"
+    },
+    {
+        "eng": "cuando",
+        "kor": ["언제"],
+        "part": "adv"
+    },
+    {
+        "eng": "debajo",
+        "kor": ["밑", "아래"],
+        "part": "prep"
+    },
+    {
+        "eng": "decir",
+        "kor": ["말하다"],
+        "part": "v"
+    },
+    {
+        "eng": "después de",
+        "kor": ["전에", "이전"],
+        "part": "adv"
+    },
+    {
+        "eng": "durante",
+        "kor": ["동안"],
+        "part": "adv"
+    },
+    {
+        "eng": "él",
+        "kor": ["그가", "그는"],
+        "part": "n"
+    },
+    {
+        "eng": "ella",
+        "kor": ["그녀가", "그녀는"],
+        "part": "n"
+    },
+    {
+        "eng": "ellos",
+        "kor": ["그들이", "그들은"],
+        "part": "n"
+    },
+    {
+        "eng": "en",
+        "kor": ["안에"],
+        "part": "prep"
+    },
+    {
+        "eng": "este",
+        "kor": ["이것"],
+        "part": "n"
+    },
+    {
+        "eng": "feliz",
+        "kor": ["행복한", "기쁜"],
+        "part": "adj"
+    },
+    {
+        "eng": "gente",
+        "kor": ["사람들"],
+        "part": "n"
+    },
+    {
+        "eng": "grande",
+        "kor": ["큰", "크다"],
+        "part": "adj"
+    },
+    {
+        "eng": "hacer",
+        "kor": ["하다", "만들다"],
+        "part": "v"
+    },
+    {
+        "eng": "ir",
+        "kor": ["가다"],
+        "part": "v"
+    },
+    {
+        "eng": "muchas veces",
+        "kor": ["종종", "자주"],
+        "part": "adv"
+    },
+    {
+        "eng": "mismo",
+        "kor": ["같은", "같다"],
+        "part": "adj"
+    },
 ];
 
 var favorites = [];
@@ -62,7 +196,9 @@ function replaceAll(str, term, replacement) {
 function changeToEng(korWord, engWord) {
     var innerHTML = document.body.innerHTML;
     var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
-    document.body.innerHTML = replaceAll(innerHTML, korWord, engWordFormatted);
+    for (var i = 0; i < korWord.length; i++) {
+        document.body.innerHTML = replaceAll(innerHTML, korWord[i], engWordFormatted);
+    }
 }
 
 function addWindow(korWord, engWord) {
