@@ -150,8 +150,6 @@ var wordlist = [{
     },
 ];
 
-var favorites = [];
-
 /**
  * Removes the helper box when the user clicks outside the box
  * @param {*} e 
@@ -163,8 +161,8 @@ function removeBox(e) {
         if (boxPresent == 0) {
             boxPresent = 1;
         } else {
-            $box.animate({ opacity: 0 }, 500);
-            setTimeout(() => { document.getElementById('box').remove(); }, 500);
+            $box.animate({ opacity: 0 }, 300);
+            setTimeout(() => { document.getElementById('box').remove(); }, 300);
             document.removeEventListener("click", removeBox);
             boxPresent = 0;
         }
@@ -204,26 +202,36 @@ function changeToEng(korWord, engWord) {
 function addWindow(korWord, engWord) {
     /* Start of jQuery element creation */
     var $star = $('<img>');
-    $star
-        .attr("src", chrome.extension.getURL("/media/star.png"))
-        .addClass("star")
-        .on("click", function() {
-            if (favorites.some(favorites => favorites['kor'] === korWord)) {
-                // If the word is already added(the star is lit)
-                // and the user clicked the star,
-                // dim the star and remove the word from favorites  
-                $(this).css("opacity", 0.5).css("filter", "grayscale(100%)");
-                favorites = favorites.filter(function(el) { return el.kor != korWord; });
-            } else {
-                // If the word hadn't been added(the star is dim)
-                // and the user clicked the star,
-                // lit the star and add the word to favorites
-                $(this).css("opacity", 1).css("filter", "grayscale(0%)");
-                favorites.push({ "kor": korWord, "eng": engWord });
-            }
+    chrome.storage.local.get('favorites', (response) => {
+        var favorites = response.favorites
+        if (favorites.some(favorites => favorites['eng'] === engWord)) {
+            $star
+                .attr("src", chrome.extension.getURL("/media/star.png"))
+                .addClass("star-lit")
+                .on("click", function() {
+                    // If the word is already added(the star is lit)
+                    // and the user clicked the star,
+                    // dim the star and remove the word from favorites 
+                    $(this).css("opacity", 0.5).css("filter", "grayscale(100%)");
+                    favorites = favorites.filter(function(el) { return el.eng != engWord; });
+                    chrome.storage.local.set({ favorites });
+                });
+        } else {
+            $star
+                .attr("src", chrome.extension.getURL("/media/star.png"))
+                .addClass("star-dim")
+                .on("click", function() {
+                    // If the word hadn't been added(the star is dim)
+                    // and the user clicked the star,
+                    // lit the star and add the word to favorites
+                    $(this).css("opacity", 1).css("filter", "grayscale(0%)");
+                    favorites.push({ "kor": korWord, "eng": engWord });
+                    chrome.storage.local.set({ favorites });
+                });
+        }
 
-            console.log(favorites);
-        });
+    })
+
 
     var $cross = $('<img>');
     $cross

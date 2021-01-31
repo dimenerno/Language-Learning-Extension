@@ -51,11 +51,21 @@
     display: block;
 }
 
-.star {
+.star-dim {
     position: relative;
     transform: translateY(10%);
     opacity: 0.5;
     filter: grayscale(100%);
+    width: 16px;
+    height: 16px;
+    left: 10px;
+    bottom: 2px;
+    transition: 0.2s;
+}
+
+.star-lit {
+    position: relative;
+    transform: translateY(10%);
     width: 16px;
     height: 16px;
     left: 10px;

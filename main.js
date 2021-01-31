@@ -20,7 +20,7 @@ function onToggle() {
 
         setTimeout(function() {
             click = true;
-        }, 200)
+        }, 300)
 
 
         chrome.tabs.query({},

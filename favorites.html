@@ -12,6 +12,7 @@
     <h1>Favorites</h1>
     <ul>
     </ul>
+    <!-- Box switch 
     <p class="combobox">
         <strong>옵션</strong>
         <select>
@@ -20,19 +21,9 @@
             <option value="combo3">3</option>
         </select>    
     </p>
-    <script src="translate.js"></script>
+    -->
     <script src="jquery.js"></script>
-    <script>
-        var $list = $('ul')
-            // favorites[3] = [apple, banana, monkey]
-        $.each(favorites, function(i) {
-            var li = $('<li>')
-                .addClass('word-item')
-                .text(favorites[i])
-                .appendTo($list);
-        });
-        console.log(favorites);
-    </script>
+    <script src="favorites.js"></script>
 </body>
 
 </html>
