@@ -1,5 +1,5 @@
 # 에스페로
-**자연스러운 언어 학습을 도와주는 크롬 확장자**
+### 자연스러운 언어 학습을 도와주는 크롬 확장자
 
 ![Demo of the extension](https://dimenerno.github.io/assets/images/chrome.jpg)
 
