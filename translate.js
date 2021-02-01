@@ -192,10 +192,10 @@ function replaceAll(str, term, replacement) {
 }
 
 function changeToEng(korWord, engWord) {
-    var innerHTML = document.body.innerHTML;
+    var innerText = document.body.innerText;
     var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
     for (var i = 0; i < korWord.length; i++) {
-        document.body.innerHTML = replaceAll(innerHTML, korWord[i], engWordFormatted);
+        document.body.innerText = replaceAll(innerText, korWord[i], engWordFormatted);
     }
 }
 
@@ -212,7 +212,7 @@ function addWindow(korWord, engWord) {
                     // If the word is already added(the star is lit)
                     // and the user clicked the star,
                     // dim the star and remove the word from favorites 
-                    $(this).css("opacity", 0.5).css("filter", "grayscale(100%)");
+                    $(this).addClass("star-dim").removeClass("star-lit")
                     favorites = favorites.filter(function(el) { return el.eng != engWord; });
                     chrome.storage.local.set({ favorites });
                 });
@@ -224,7 +224,7 @@ function addWindow(korWord, engWord) {
                     // If the word hadn't been added(the star is dim)
                     // and the user clicked the star,
                     // lit the star and add the word to favorites
-                    $(this).css("opacity", 1).css("filter", "grayscale(0%)");
+                    $(this).addClass("star-lit").removeClass("star-dim")
                     favorites.push({ "kor": korWord, "eng": engWord });
                     chrome.storage.local.set({ favorites });
                 });
@@ -267,9 +267,9 @@ function addWindow(korWord, engWord) {
 
 
 function changeToKor(korWord, engWord) {
-    var innerHTML = document.body.innerHTML;
+    var innerText = document.body.innerText;
     var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
-    document.body.innerHTML = replaceAll(innerHTML, engWordFormatted, korWord);
+    document.body.textContent = replaceAll(innerText, engWordFormatted, korWord);
 }
 
 function main() {
