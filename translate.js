@@ -192,10 +192,10 @@ function replaceAll(str, term, replacement) {
 }
 
 function changeToEng(korWord, engWord) {
-    var innerText = document.body.innerText;
+    var innerHTML = document.body.innerHTML;
     var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
     for (var i = 0; i < korWord.length; i++) {
-        document.body.innerText = replaceAll(innerText, korWord[i], engWordFormatted);
+        document.body.innerHTML = replaceAll(innerHTML, korWord[i], engWordFormatted);
     }
 }
 
@@ -267,9 +267,9 @@ function addWindow(korWord, engWord) {
 
 
 function changeToKor(korWord, engWord) {
-    var innerText = document.body.innerText;
+    var innerHTML = document.body.innerHTML;
     var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
-    document.body.textContent = replaceAll(innerText, engWordFormatted, korWord);
+    document.body.innerHTML = replaceAll(innerHTML, engWordFormatted, korWord[0]);
 }
 
 function main() {
