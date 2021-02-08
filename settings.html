@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="main.css">
     <title>Settings</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
@@ -28,15 +28,27 @@
         </li>
         <li>
             단어를 바꾸는 빈도<br>
-            <form action=""></form>
             <select name="frequency" id="frequency">
                 <option value="1">100%</option>
                 <option value="0.7">70%</option>
                 <option value="0.5">50%</option>
             </select>
+            <button id="set">set</button>
         </li>
-        <li><a href="stores.html">상점으로(근데 이것도 안만듦)</a></li>
+
+        script test
+        <p id="para">Some text here</p>
+        <button onclick="changeColor('blue');">blue</button>
+        <button onclick="changeColor('red');">red</button>
+        <script>
+            function changeColor(newColor) {
+            var elem = document.getElementById('para');
+            elem.style.color = newColor;
+            }
+        </script>
     </ul>
+
+    <script src="settings.js"></script>
 </body>
 
 </html>

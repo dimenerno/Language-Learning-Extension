@@ -150,10 +150,6 @@ var wordlist = [{
     },
 ];
 
-function replaceFreq(number){
-    return Math.random()<=number;
-}
-
 /**
  * Removes the helper box when the user clicks outside the box
  * @param {*} e 
@@ -185,6 +181,7 @@ function arrayRemove(arr, value) {
  * When the helper box is present, the value is 1. If not, 0.
  */
 var boxPresent = 0;
+
 
 function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
