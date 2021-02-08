@@ -28,10 +28,17 @@ h1 {
     bottom: 30px;
 }
 
+.settings {
+    position: absolute;
+    width: 35px;
+    left: 30px;
+    bottom: 30px;
+}
+
 .report {
     position: absolute;
-    width: 20px;
-    left: 20px;
+    width: 24px;
+    right: 20px;
     top: 20px;
 }
 
@@ -114,7 +121,7 @@ input:checked+.slider:before {
 
 .back {
     position: absolute;
-    width: 48px;
+    width: 30px;
     height: 48px;
     left: 18px;
     top: 18px;

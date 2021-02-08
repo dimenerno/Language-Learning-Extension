@@ -150,6 +150,10 @@ var wordlist = [{
     },
 ];
 
+function replaceFreq(number){
+    return Math.random()<=number;
+}
+
 /**
  * Removes the helper box when the user clicks outside the box
  * @param {*} e 
