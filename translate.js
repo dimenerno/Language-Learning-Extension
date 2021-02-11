@@ -181,7 +181,7 @@ function arrayRemove(arr, value) {
  * When the helper box is present, the value is 1. If not, 0.
  */
 var boxPresent = 0;
-
+var originalHTML;
 
 function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -268,9 +268,7 @@ function addWindow(korWord, engWord) {
 
 
 function changeToKor(korWord, engWord) {
-    var innerHTML = document.body.innerHTML;
-    var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
-    document.body.innerHTML = replaceAll(innerHTML, engWordFormatted, korWord[0]);
+    document.body.innerHTML = originalHTML;
 }
 
 function main() {
@@ -290,6 +288,13 @@ function main() {
     })
 }
 
-main()
+function init() {
+    originalHTML = document.body.innerHTML
+    main()
+}
+
+window.addEventListener("load", function(event) {
+    init()
+});
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) { main() })
