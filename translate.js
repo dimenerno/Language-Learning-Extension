@@ -185,7 +185,7 @@ function arrayRemove(arr, value) {
  * When the helper box is present, the value is 1. If not, 0.
  */
 var boxPresent = 0;
-var originalHTML;
+var originalTags;
 
 function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -275,7 +275,9 @@ function addWindow(korWord, engWord) {
 
 
 function changeToKor() {
-    document.body.innerHTML = originalHTML;
+    Array.prototype.slice.call(document.getElementsByTagName('p')).forEach(function(node, index) {
+        node.innerHTML = originalTags[index]
+    });
 }
 
 function walkTheDOM(node, func, korWord, engWord) {
@@ -290,7 +292,6 @@ function walkTheDOM(node, func, korWord, engWord) {
 
 function main() {
     chrome.storage.local.get('isTranslating', (response) => {
-        var firstElem = document.getElementsByTagName("BODY")[0];
         if (response.isTranslating) {
             for (var i = 0; i < wordlist.length; i++) {
                 changeToEng(wordlist[i].kor, wordlist[i].eng);
@@ -307,7 +308,10 @@ function main() {
 }
 
 function init() {
-    originalHTML = document.body.innerHTML
+    originalTags = []
+    Array.prototype.slice.call(document.getElementsByTagName('p')).forEach(function(node) {
+        originalTags.push(node.innerHTML)
+    })
     main()
 }
 
