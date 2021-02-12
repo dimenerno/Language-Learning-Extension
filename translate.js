@@ -4,6 +4,10 @@ var wordlist = [{
         "part": "adv"
     },
     {
+        "eng": "manzana",
+        "kor": ["사과"]
+    },
+    {
         "eng": "afuera",
         "kor": ["밖"],
         "part": "adv"
@@ -193,11 +197,14 @@ function replaceAll(str, term, replacement) {
 }
 
 function changeToEng(korWord, engWord) {
-    var innerHTML = document.body.innerHTML;
     var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
-    for (var i = 0; i < korWord.length; i++) {
-        document.body.innerHTML = replaceAll(innerHTML, korWord[i], engWordFormatted);
-    }
+
+    Array.prototype.slice.call(document.getElementsByTagName('p')).forEach(function(node) {
+        for (var i = 0; i < korWord.length; i++) {
+            var string = node.innerHTML
+            node.innerHTML = replaceAll(string, korWord[i], engWordFormatted);
+        }
+    });
 }
 
 function addWindow(korWord, engWord) {
@@ -267,12 +274,23 @@ function addWindow(korWord, engWord) {
 }
 
 
-function changeToKor(korWord, engWord) {
+function changeToKor() {
     document.body.innerHTML = originalHTML;
+}
+
+function walkTheDOM(node, func, korWord, engWord) {
+    func(node, korWord, engWord);
+    node = node.firstChild;
+    console.log(node)
+    while (node) {
+        walkTheDOM(node, func, korWord, engWord);
+        node = node.nextSibling;
+    }
 }
 
 function main() {
     chrome.storage.local.get('isTranslating', (response) => {
+        var firstElem = document.getElementsByTagName("BODY")[0];
         if (response.isTranslating) {
             for (var i = 0; i < wordlist.length; i++) {
                 changeToEng(wordlist[i].kor, wordlist[i].eng);
@@ -282,7 +300,7 @@ function main() {
             }
         } else {
             for (var i = 0; i < wordlist.length; i++) {
-                changeToKor(wordlist[i].kor, wordlist[i].eng);
+                changeToKor();
             }
         }
     })
