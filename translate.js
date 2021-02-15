@@ -8,6 +8,10 @@ var wordlist = [{
         "kor": ["사과"]
     },
     {
+        "eng": "test",
+        "kor": ["그"]
+    },
+    {
         "eng": "afuera",
         "kor": ["밖"],
         "part": "adv"
@@ -199,7 +203,7 @@ function replaceAll(str, term, replacement) {
 function changeToEng(korWord, engWord) {
     var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
 
-    Array.prototype.slice.call(document.getElementsByTagName('p')).forEach(function(node) {
+    Array.prototype.slice.call(document.querySelectorAll('p,span')).forEach(function(node) {
         for (var i = 0; i < korWord.length; i++) {
             var string = node.innerHTML
             node.innerHTML = replaceAll(string, korWord[i], engWordFormatted);
@@ -298,7 +302,7 @@ function addWindow(korWord, engWord) {
 
 
 function changeToKor() {
-    Array.prototype.slice.call(document.getElementsByTagName('p')).forEach(function(node, index) {
+    Array.prototype.slice.call(document.querySelectorAll('p,span')).forEach(function(node, index) {
         node.innerHTML = originalTags[index]
     });
 }
@@ -332,7 +336,7 @@ function main() {
 
 function init() {
     originalTags = []
-    Array.prototype.slice.call(document.getElementsByTagName('p')).forEach(function(node) {
+    Array.prototype.slice.call(document.querySelectorAll('p,span')).forEach(function(node) {
         originalTags.push(node.innerHTML)
     })
     main()
