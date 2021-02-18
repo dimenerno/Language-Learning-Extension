@@ -201,14 +201,23 @@ function replaceAll(str, term, replacement) {
 }
 
 function changeToEng(korWord, engWord) {
-    var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
+     chrome.storage.local.get('frequency', (response) => {
+    
+        var engWordFormatted = ("<span class=\"highlight " + engWord.replace(/\s/g, "") + "\">") + engWord + "</span>"
 
-    Array.prototype.slice.call(document.querySelectorAll('p,span')).forEach(function(node) {
-        for (var i = 0; i < korWord.length; i++) {
-            var string = node.innerHTML
-            node.innerHTML = replaceAll(string, korWord[i], engWordFormatted);
-        }
-    });
+        
+        Array.prototype.slice.call(document.querySelectorAll('p')).forEach(function(node) {
+            console.log(response.frequency);
+            if(response.frequency>Math.random()){
+                console.log(Math.random);
+                for (var i = 0; i < korWord.length; i++) {
+                    var string = node.innerHTML
+                    node.innerHTML = replaceAll(string, korWord[i], engWordFormatted);
+                }
+            }
+        });
+
+    })
 }
 
 function dimStar($t, engWord, korWord) {
@@ -302,7 +311,7 @@ function addWindow(korWord, engWord) {
 
 
 function changeToKor() {
-    Array.prototype.slice.call(document.querySelectorAll('p,span')).forEach(function(node, index) {
+    Array.prototype.slice.call(document.querySelectorAll('p')).forEach(function(node, index) {
         node.innerHTML = originalTags[index]
     });
 }
@@ -336,7 +345,7 @@ function main() {
 
 function init() {
     originalTags = []
-    Array.prototype.slice.call(document.querySelectorAll('p,span')).forEach(function(node) {
+    Array.prototype.slice.call(document.querySelectorAll('p')).forEach(function(node) {
         originalTags.push(node.innerHTML)
     })
     main()
